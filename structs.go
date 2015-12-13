@@ -255,13 +255,11 @@ func NewLiveChatModerator(channel, user string) *LiveChatModerator {
 const LiveChatModeratorListResponseKind string = "youtube#liveChatModeratorListResponse"
 
 type LiveChatModeratorListResponse struct {
-	Error          *Error               `json:"error,omitempty"`
-	Kind           string               `json:"kind,omitempty"`
-	Etag           string               `json:"etag,omitempty"`
-	PrevPageToken  string               `json:"prevPageToken,omitempty"`
-	NextPageToken  string               `json:"nextPageToken,omitempty"`
-	PageInfo       *PageInfo            `json:"pageInfo,omitempty"`
-	TotalResults   int                  `json:"totalResults,omitempty"`
-	ResultsPerPage int                  `json:"resultsPerPage,omitempty"`
-	Items          []*LiveChatModerator `json:"items,omitempty"`
+	Error         *Error               `json:"error,omitempty"`
+	Kind          string               `json:"kind,omitempty"`
+	Etag          string               `json:"etag,omitempty"`
+	PrevPageToken string               `json:"prevPageToken,omitempty"`
+	NextPageToken string               `json:"nextPageToken,omitempty"`
+	PageInfo      *PageInfo            `json:"pageInfo,omitempty"`
+	Items         []*LiveChatModerator `json:"items,omitempty"`
 }
