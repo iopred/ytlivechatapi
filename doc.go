@@ -9,7 +9,7 @@ Send "Hello world!" to the first default stream chat.
       c.InsertLiveChatMessage(ytlivechatapi.NewLiveChatMessage(response.Items[0].Snippet.LiveChatId, "Hello world!"))
     }
 
-Polls on the first default stream chat bans everyone that sends a message for 10 seconds.
+Polls on the first default stream chat and bans everyone that sends a message for 10 seconds.
     c := ytlivechatapi.NewClient(&http.Client{})
     if response, err := c.ListLiveBroadcasts("default=true"); err == nil {
       liveChatId := response.Items[0].Snippet.LiveChatId
