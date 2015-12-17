@@ -83,7 +83,7 @@ func (c *Client) ListLiveChatMessages(liveChatId string, pageToken string) (*Liv
     pageTokenString = "&pageToken=" + pageToken
   }
 
-  resp, err := c.Get("https://www.googleapis.com/youtube/v3/liveChat/messages?maxResults=50&part=id,snippet,authorDetails&liveChatId=" + liveChatId + pageTokenString)
+  resp, err := c.Get("https://www.googleapis.com/youtube/v3/liveChat/messages?maxResults=2000&part=id,snippet,authorDetails&liveChatId=" + liveChatId + pageTokenString)
   if err != nil {
     return nil, err
   }
