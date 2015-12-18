@@ -217,3 +217,49 @@ func NewLiveChatBan(channel, user string, duration int) *LiveChatBan {
 
 	return liveChatBan
 }
+
+type LiveChatModeratorSnippetModeratorDetails struct {
+	ChannelId       string `json:"channelId,omitempty"`
+	ChannelUrl      string `json:"channelUrl,omitempty"`
+	DisplayName     string `json:"displayName,omitempty"`
+	ProfileImageUrl string `json:"profileImageUrl,omitempty"`
+}
+
+type LiveChatModeratorSnippet struct {
+	ModeratorDetails *LiveChatModeratorSnippetModeratorDetails `json:"moderatorDetails,omitempty"`
+	LiveChatId       string                                    `json:"liveChatId,omitempty"`
+}
+
+const LiveChatModeratorKind string = "youtube#liveChatModerator"
+
+type LiveChatModerator struct {
+	Error   *Error                    `json:"error,omitempty"`
+	Kind    string                    `json:"kin,omitemptyd"`
+	Etag    string                    `json:"etag,omitempty"`
+	Id      string                    `json:"id,omitempty"`
+	Snippet *LiveChatModeratorSnippet `json:"snippet,omitempty"`
+}
+
+func NewLiveChatModerator(channel, user string) *LiveChatModerator {
+	return &LiveChatModerator{
+		Kind: LiveChatModeratorKind,
+		Snippet: &LiveChatModeratorSnippet{
+			LiveChatId: channel,
+			ModeratorDetails: &LiveChatModeratorSnippetModeratorDetails{
+				ChannelId: user,
+			},
+		},
+	}
+}
+
+const LiveChatModeratorListResponseKind string = "youtube#liveChatModeratorListResponse"
+
+type LiveChatModeratorListResponse struct {
+	Error         *Error               `json:"error,omitempty"`
+	Kind          string               `json:"kind,omitempty"`
+	Etag          string               `json:"etag,omitempty"`
+	PrevPageToken string               `json:"prevPageToken,omitempty"`
+	NextPageToken string               `json:"nextPageToken,omitempty"`
+	PageInfo      *PageInfo            `json:"pageInfo,omitempty"`
+	Items         []*LiveChatModerator `json:"items,omitempty"`
+}
