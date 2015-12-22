@@ -3,7 +3,6 @@ package ytlivechatapi
 import (
   "bytes"
   "encoding/json"
-  "errors"
   "io/ioutil"
   "net/http"
 )
@@ -22,34 +21,6 @@ func (c *Client) delete(url string) (resp *http.Response, err error) {
     return nil, err
   }
   return c.Do(req)
-}
-
-func (c *Client) GetMe() (string, error) {
-  resp, err := c.Get("https://www.googleapis.com/youtube/v3/channels?part=id&mine=true")
-  if err != nil {
-    return "", err
-  }
-
-  defer resp.Body.Close()
-  body, err := ioutil.ReadAll(resp.Body)
-  if err != nil {
-    return "", err
-  }
-
-  type ChannelListResponse struct {
-    Items []struct {
-      Id string `json:"id"`
-    } `json:"items"`
-  }
-
-  channelList := &ChannelListResponse{}
-  err = json.Unmarshal(body, channelList)
-
-  if len(channelList.Items) != 1 {
-    return "", errors.New("Invalid response while requesting Me")
-  }
-
-  return channelList.Items[0].Id, nil
 }
 
 func (c *Client) ListLiveBroadcasts(params string) (*LiveBroadcastListResponse, error) {
